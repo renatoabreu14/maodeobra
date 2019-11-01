@@ -12,7 +12,7 @@ class UserController extends Controller
      * UserController constructor.
      */
     public function __construct(){
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.register');
+        return view('auth.register');
     }
 
     /**
