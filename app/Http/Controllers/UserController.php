@@ -12,7 +12,7 @@ class UserController extends Controller
      * UserController constructor.
      */
     public function __construct(){
-       // $this->middleware('auth');
+        $this->middleware('auth')->except('create', 'store');
     }
 
     /**
