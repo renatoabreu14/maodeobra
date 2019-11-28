@@ -37,10 +37,11 @@
 
         <div class="social-auth-links text-center">
             <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-                Facebook</a>
-            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-                Google+</a>
+            <form action="{{route('loginsocial')}}" method="post">
+                @csrf
+                <button type="submit" name="social_type" value="github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Entrar usando o Github</button>
+                <button type="submit" name="social_type" value="google" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Entrar usando o Google</button>
+            </form>
         </div>
         <!-- /.social-auth-links -->
 

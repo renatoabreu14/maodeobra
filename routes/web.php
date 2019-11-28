@@ -12,18 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('users.index');
 });
 
-Route::get('/teste', function () {
-    return view('blank');
-});
+Route::post('/login/social', 'Auth\LoginController@loginSocial')->name('loginsocial');
+Route::get('/login/callback', 'Auth\LoginController@loginCallback');
 
 Route::resource('users', 'UserController');
 Route::resource('services', 'ServiceController');
-Route::get('/loginteste', function (){
-    return view('users.login');
-});
 
 Auth::routes();
 
