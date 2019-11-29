@@ -107,4 +107,8 @@ class UserController extends Controller
         $user->delete();
         return redirect("/users");
     }
+
+    public function profile(){
+        return view('users.profile');
+    }
 }

@@ -20,6 +20,7 @@ Route::get('/login/callback', 'Auth\LoginController@loginCallback');
 
 Route::resource('users', 'UserController');
 Route::resource('services', 'ServiceController');
+Route::get('profile', 'UserController@profile')->name('profile');
 
 Auth::routes();
 
