@@ -21,6 +21,9 @@ Route::get('/login/callback', 'Auth\LoginController@loginCallback');
 Route::resource('users', 'UserController');
 Route::resource('services', 'ServiceController');
 Route::get('profile', 'UserController@profile')->name('profile');
+Route::get('profile/edit', 'UserController@editFoto')->name('editfoto');
+Route::put('profile/update', 'UserController@updateFoto')->name('updatefoto');
+Route::get('userservices/addservice', 'UserServiceController@addService')->name('addservice');
 
 Auth::routes();
 

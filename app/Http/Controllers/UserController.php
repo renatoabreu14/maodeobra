@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -109,6 +110,26 @@ class UserController extends Controller
     }
 
     public function profile(){
+        return view('users.profile');
+    }
+
+    public function editFoto(){
+        return view('users.editfoto');
+    }
+
+    public function updateFoto(Request $request){
+        $arquivo = $request->file('fotoperfil');
+        $user = User::findOrFail(\Auth::user()->id);
+
+
+        $canvas = Image::canvas(300, 300);
+        $image = Image::make($arquivo->getRealPath())->resize(300, 300, function ($constraint){
+            $constraint->aspectRatio();
+        });
+        $canvas->insert($image, 'center');
+        $user->foto = $canvas->encode('data-url');
+        $user->update();
+        \Auth::login($user);
         return view('users.profile');
     }
 }

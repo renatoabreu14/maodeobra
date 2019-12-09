@@ -25,7 +25,7 @@
                     <div class="box box-primary">
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle" src="{{Auth::user()->foto}}" alt="User profile picture">
-                            <a href="{{route('editfoto')}}" class="btn btn-primary center-block">Editar foto</a>
+                            <a href="#" class="btn btn-primary center-block">Editar foto</a>
 
                             <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
 
@@ -95,27 +95,19 @@
                 <div class="col-md-9">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#activity" data-toggle="tab">Serviços oferecidos</a></li>
+                            <li class="active"><a href="#activity" data-toggle="tab">Atualizar foto do perfil</a></li>
                             {{--<li><a href="#timeline" data-toggle="tab">Timeline</a></li>
                             <li><a href="#settings" data-toggle="tab">Settings</a></li>--}}
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="activity">
-                                <a href="{{route('addservice')}}" class="btn btn-success">Adicionar</a>
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Serviço</th>
-                                        <th>-</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <form action="{{route('updatefoto')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="file" name="fotoperfil" id=""><br>
+                                    <button class="btn btn-primary" type="submit">Salvar</button>
+                                </form>
+
                                 {{--<!-- Post -->
                                 <div class="post">
                                     <div class="user-block">

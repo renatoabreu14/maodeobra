@@ -95,27 +95,34 @@
                 <div class="col-md-9">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#activity" data-toggle="tab">Serviços oferecidos</a></li>
+                            <li class="active"><a href="#activity" data-toggle="tab">Adicionar serviços</a></li>
                             {{--<li><a href="#timeline" data-toggle="tab">Timeline</a></li>
                             <li><a href="#settings" data-toggle="tab">Settings</a></li>--}}
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="activity">
-                                <a href="{{route('addservice')}}" class="btn btn-success">Adicionar</a>
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Serviço</th>
-                                        <th>-</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <div class="container-fluid">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select name="services" id="" class="form-control">
+                                                @foreach($services as $service)
+                                                    <option value="{{$service->id}}">{{$service->nome}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="service_value" id="" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group col-12">
+                                        <button type="submit" class="btn btn-success">Salvar</button>
+                                    </div>
+
+
+                                </form>
+                                </div>
                                 {{--<!-- Post -->
                                 <div class="post">
                                     <div class="user-block">
