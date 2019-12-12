@@ -18,12 +18,16 @@ Route::get('/', function () {
 Route::post('/login/social', 'Auth\LoginController@loginSocial')->name('loginsocial');
 Route::get('/login/callback', 'Auth\LoginController@loginCallback');
 
+Route::get('userservices/busca', 'UserServiceController@busca')->name('buscaprestador');
+Route::post('userservices/mostrar', 'UserServiceController@mostrar')->name('mostrarprestador');
 Route::resource('users', 'UserController');
 Route::resource('services', 'ServiceController');
+Route::resource('userservices', 'UserServiceController');
 Route::get('profile', 'UserController@profile')->name('profile');
 Route::get('profile/edit', 'UserController@editFoto')->name('editfoto');
 Route::put('profile/update', 'UserController@updateFoto')->name('updatefoto');
-Route::get('userservices/addservice', 'UserServiceController@addService')->name('addservice');
+
+
 
 Auth::routes();
 

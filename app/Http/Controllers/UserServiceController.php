@@ -25,7 +25,20 @@ class UserServiceController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+        return view('userservices.create', compact('services'));
+    }
+
+    public function busca()
+    {
+        $services = Service::all();
+        return view('userservices.busca', compact('services'));
+    }
+
+    public function mostrar(Request $request){
+        $service_busca = Service::findOrFail($request->input('services'));
+        $services = Service::all();
+        return view('userservices.busca', compact('services', 'service_busca'));
     }
 
     /**
@@ -36,7 +49,12 @@ class UserServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userService = new UserService();
+        $userService->user_id = \Auth::user()->id;
+        $userService->service_id = $request->input('services');
+        $userService->service_value = $request->input('service_value');
+        $userService->save();
+        return redirect('/profile');
     }
 
     /**
@@ -56,9 +74,12 @@ class UserServiceController extends Controller
      * @param  \App\UserService  $userService
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserService $userService)
+    public function edit(int $id)
     {
         //
+        $userService = UserService::findOrFail($id);
+        $services = Service::all();
+        return view('userservices.edit', compact('userService', 'services'));
     }
 
     /**
@@ -68,9 +89,16 @@ class UserServiceController extends Controller
      * @param  \App\UserService  $userService
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserService $userService)
+    public function update(Request $request, int $id)
     {
         //
+        $userService = UserService::findOrFail($id);
+        //dd($userService);
+        $userService->service_id = $request->input('services');
+        $userService->service_value = $request->input('service_value');
+        $userService->update();
+        return redirect('/profile');
+
     }
 
     /**
@@ -79,13 +107,16 @@ class UserServiceController extends Controller
      * @param  \App\UserService  $userService
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserService $userService)
+    public function destroy(int $id)
     {
         //
+        $userService = UserService::findOrFail($id);
+        $userService->delete();
+        return redirect('/profile');
     }
 
-    public function addService(){
+    /*public function addService(){
         $services = Service::all();
         return view('users.addservice', compact('services'));
-    }
+    }*/
 }

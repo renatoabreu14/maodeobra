@@ -95,45 +95,35 @@
                 <div class="col-md-9">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#activity" data-toggle="tab">Serviços oferecidos</a></li>
+                            <li class="active"><a href="#activity" data-toggle="tab">Adicionar serviços</a></li>
                             {{--<li><a href="#timeline" data-toggle="tab">Timeline</a></li>
                             <li><a href="#settings" data-toggle="tab">Settings</a></li>--}}
                         </ul>
                         <div class="tab-content">
                             <div class="active tab-pane" id="activity">
-                                <a href="{{route('userservices.create')}}" class="btn btn-success">Adicionar</a>
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Serviço</th>
-                                        <th>Valor/Hora</th>
-                                        <th>-</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach(\Auth::user()->services as $service)
-                                        <tr>
-                                            <td>{{$service->nome}}</td>
-                                            <td>{{$service->pivot->service_value}}</td>
-                                            <td>
-                                                <a href="{{route('userservices.edit', $service->pivot->id)}}" class="btn btn-primary">Editar</a>
-                                                <a href="{{route('userservices.destroy', $service->pivot->id)}}" class="btn btn-danger"
-                                                   title="Excluir" alt="Excluir"
-                                                   onclick="event.preventDefault();
-                                                       if (confirm('Deseja realmente excluir este registro?')){
-                                                       document.getElementById('form-delete{{$service->pivot->id}}').submit();
-                                                       }"><small><i class="fa fa-eraser"></i></small></a>
+                                <div class="container-fluid">
+                                <form action="{{route('userservices.store')}}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select name="services" id="" class="form-control">
+                                                @foreach($services as $service)
+                                                    <option value="{{$service->id}}">{{$service->nome}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="service_value" id="" class="form-control">
+                                        </div>
+                                    </div>
 
-                                                <form method="post" action="{{route('userservices.destroy', $service->pivot->id)}}"
-                                                      style="display: none;" id="form-delete{{$service->pivot->id}}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                    <div class="row form-group col-12">
+                                        <button type="submit" class="btn btn-success">Salvar</button>
+                                    </div>
+
+
+                                </form>
+                                </div>
                                 {{--<!-- Post -->
                                 <div class="post">
                                     <div class="user-block">

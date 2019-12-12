@@ -10,4 +10,8 @@ class Service extends Model
     protected $fillable = [
         'nome'
     ];
+
+    public function users(){
+        return $this->belongsToMany('App\User', 'user_services');
+    }
 }

@@ -230,6 +230,7 @@
         <li class="header">MAIN NAVIGATION</li>
           <li><a href="{{route("users.index")}}"><i class="fa fa-circle-o text-red"></i> <span>Gerenciar usuários</span></a></li>
           <li><a href="{{route("services.index")}}"><i class="fa fa-circle-o text-red"></i> <span>Gerenciar serviços</span></a></li>
+          <li><a href="{{route("buscaprestador")}}"><i class="fa fa-circle-o text-red"></i> <span>Buscar prestador</span></a></li>
         {{--<li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>

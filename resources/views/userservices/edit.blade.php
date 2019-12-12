@@ -102,26 +102,32 @@
                         <div class="tab-content">
                             <div class="active tab-pane" id="activity">
                                 <div class="container-fluid">
-                                <form action="">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <select name="services" id="" class="form-control">
-                                                @foreach($services as $service)
-                                                    <option value="{{$service->id}}">{{$service->nome}}</option>
-                                                @endforeach
-                                            </select>
+                                    <form action="{{route('userservices.update', $userService->id)}}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <select name="services" id="" class="form-control">
+                                                    @foreach($services as $service)
+                                                        @if($service->id == $userService->service_id)
+                                                            <option value="{{$service->id}}" selected>{{$service->nome}}</option>
+                                                        @else
+                                                            <option value="{{$service->id}}">{{$service->nome}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" name="service_value" id="" class="form-control" value="{{$userService->service_value}}">
+                                            </div>
                                         </div>
-                                        <div class="col-6">
-                                            <input type="text" name="service_value" id="" class="form-control">
+
+                                        <div class="row form-group col-12">
+                                            <button type="submit" class="btn btn-success">Salvar</button>
                                         </div>
-                                    </div>
-
-                                    <div class="row form-group col-12">
-                                        <button type="submit" class="btn btn-success">Salvar</button>
-                                    </div>
 
 
-                                </form>
+                                    </form>
                                 </div>
                                 {{--<!-- Post -->
                                 <div class="post">
